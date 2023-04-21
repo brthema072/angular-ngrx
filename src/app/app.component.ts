@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { IAppState } from './store/app.state';
+import { Store } from '@ngrx/store';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,17 +9,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-ngrx';
+  constructor(private store: Store<{ app: IAppState }>){
+  }
 
-
-  counter: number = 0
+  counter$ = this.store.select('app').pipe(map(select => select.counter));
 
   increment(){
-    this.counter += 1
+    // this.counter += 1
   }
 
   decrement(){
-    this.counter -= 1
+    // this.counter -= 1
   }
 
 }
