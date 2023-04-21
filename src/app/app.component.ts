@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IAppState } from './store/app.state';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs';
-import { decrementCounter, incrementCounter } from './store/app.action';
+import { decrementCounter, incrementCounter, setCounter } from './store/app.action';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +21,12 @@ export class AppComponent {
 
   decrement(){
     this.store.dispatch(decrementCounter())
+  }
+
+  setCounterAndConverted(value: string){
+    const valueFormated = Number(value)
+
+    this.store.dispatch(setCounter({ payload: valueFormated }))
   }
 
 }

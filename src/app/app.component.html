@@ -7,6 +7,12 @@
   <button (click)="increment()">Incrementar</button>
   <button (click)="decrement()">Decrementar</button>
 
+  <br>
+  <br>
+
+  <input #inputCounter id="inputCounter" type="number">
+  <button (click)="setCounterAndConverted(inputCounter.value)">Definir contador</button>
+
   <app-counter-box></app-counter-box>
 </div>
 
