@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IAppState } from './store/app.state';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs';
+import { decrementCounter, incrementCounter } from './store/app.action';
 
 @Component({
   selector: 'app-root',
@@ -12,14 +13,14 @@ export class AppComponent {
   constructor(private store: Store<{ app: IAppState }>){
   }
 
-  counter$ = this.store.select('app').pipe(map(select => select.counter));
+  counter$ = this.store.select('app').pipe(map(app => app.counter));
 
   increment(){
-    // this.counter += 1
+    this.store.dispatch(incrementCounter())
   }
 
   decrement(){
-    // this.counter -= 1
+    this.store.dispatch(decrementCounter())
   }
 
 }
